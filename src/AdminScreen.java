@@ -68,7 +68,24 @@ public class AdminScreen extends JFrame implements ActionListener {
         tables.add("Таблица экскурсий туров");
         tables.add("Таблица услуг отелей");
         tables.add("Таблица отзывов на туры");
-        table = new JTable();
+        access.setTableResultSet("Clients");
+        names = new String[]{"client_id", "name", "email", "phone_number"};
+        currentTableName = "Clients";
+        currentTableLabel.setText("Clients");
+        Vector<Vector<String>> cells = new Vector<>();
+        cells.add(new Vector<>());
+        List<String> list = Arrays.asList(names);
+        System.out.println(list);
+        Vector<String> dummyCells = new Vector<String>(list);
+        System.out.println(dummyCells);
+        cells.add(dummyCells);
+        try {
+            table = new JTable(access.getTable(), names);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        inputTable = new JTable(cells, dummyCells);
+        inputTable.setBorder(new LineBorder(Color.black, 2));
         tableMenu = new JComboBox<>(tables);
         tableMenu.setSize(1000, 30);
         tableMenu.setSelectedIndex(0);
@@ -205,7 +222,6 @@ public class AdminScreen extends JFrame implements ActionListener {
             inputTable.setBorder(new LineBorder(Color.black, 2));
             newPanel.remove(3);
             newPanel.add(inputTable);
-            newPanel.remove(2);
             newPanel.add(inputButton);
             newPanel.updateUI();
         } else if (e.getSource() == inputButton) {
