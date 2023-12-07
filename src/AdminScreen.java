@@ -53,6 +53,16 @@ public class AdminScreen extends JFrame implements ActionListener {
     }
 
     AdminScreen() throws SQLException, ClassNotFoundException {
+//        toursHotelsPanel = new JPanel(new GridLayout());
+//        names = new String[]{"destination", "price", "hotel_name"};
+//        access.getProcedure("get_tours_and_hotels");
+//        toursHotelsTable = new JTable(access.getTable(), names);
+//        toursHotelsPanel.add(new JLabel("Отели входящие в туры"));
+//        toursHotelsPanel.add(toursHotelsTable);
+//        toursHotelsPanel.setSize(1000,500);
+//        toursHotelsPanel.setVisible(true);
+//        add(toursHotelsPanel, BorderLayout.CENTER);
+//        setTitle("ADMIN");
         chooseTable = new JLabel("Выберите таблицу");
         chooseTable.setSize(1000, 30);
         deleteItem = new JButton("Удалить строку");

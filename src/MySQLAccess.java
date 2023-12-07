@@ -14,7 +14,7 @@ public class MySQLAccess {
             Class.forName("com.mysql.jdbc.Driver");
             // Setup the connection with the DB
             connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/tour_company?"
+                    .getConnection("jdbc:mysql://localhost/tour_company2?"
                             + "user=root&password=MyNewPass");
             statement = connect.createStatement();
 
@@ -108,6 +108,9 @@ public class MySQLAccess {
         //resultSet = statement.executeQuery("select * from " + input);
         resultSet = statement.executeQuery("select * from " + input);
     }
+    public void searchInTable(String tableName, String columnName, String value) throws SQLException {
+        resultSet = statement.executeQuery("select * from " + tableName + " where " + columnName + " = '" + value + "'");
+    }
 
     @Override
     protected void finalize() throws Throwable {
@@ -158,7 +161,9 @@ public class MySQLAccess {
         }
             return output;
     }
-
+    public void getProcedure(String procedureName) throws SQLException {
+        resultSet =  statement.executeQuery("call tour_company2."+ procedureName + "();");
+    }
     private void writeResultSet(ResultSet resultSet) throws SQLException {
         // ResultSet is initially before the first data set
         while (resultSet.next()) {
